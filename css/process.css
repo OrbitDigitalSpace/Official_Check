@@ -1,0 +1,1508 @@
+/* =========================================================
+   ORBIT DIGITAL SPACE
+   PROCESS PAGE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: #050505;
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SPACE BACKGROUND
+========================================================= */
+
+.space-background {
+    position: fixed;
+    inset: 0;
+
+    z-index: -10;
+
+    overflow: hidden;
+
+    background: #050505;
+}
+
+
+.space-background video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: .42;
+
+    filter:
+        brightness(.45)
+        contrast(1.15)
+        saturate(.8);
+}
+
+
+.space-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: -9;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(255,101,0,.10),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.75)
+        );
+}
+
+
+#spaceCanvas {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -8;
+
+    pointer-events: none;
+}
+
+
+.cursor-glow {
+    position: fixed;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,101,0,.12),
+            transparent 65%
+        );
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    z-index: -5;
+
+    filter: blur(10px);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 28px 5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 100;
+
+    transition: .4s;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.brand-symbol {
+    position: relative;
+
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+    place-items: center;
+}
+
+
+.brand-letter {
+    font-family: "Space Grotesk";
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #ff6500;
+
+    z-index: 2;
+}
+
+
+.brand-ring {
+    position: absolute;
+
+    width: 48px;
+    height: 17px;
+
+    border: 1px solid #ff6500;
+
+    border-radius: 50%;
+
+    transform: rotate(-25deg);
+}
+
+
+.brand-star {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    color: #ff6500;
+
+    font-size: 10px;
+}
+
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.brand-text strong {
+    font-family: "Space Grotesk";
+
+    font-size: 16px;
+
+    letter-spacing: .12em;
+}
+
+
+.brand-text small {
+    font-size: 7px;
+
+    letter-spacing: .22em;
+
+    opacity: .55;
+}
+
+
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
+
+.desktop-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 38px;
+}
+
+
+.desktop-nav a {
+    position: relative;
+
+    font-size: 10px;
+
+    letter-spacing: .18em;
+
+    opacity: .6;
+
+    transition: .3s;
+}
+
+
+.desktop-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 1px;
+
+    background: #ff6500;
+
+    transition: .3s;
+}
+
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+    color: #ff6500;
+
+    opacity: 1;
+}
+
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.menu-button {
+    display: none;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    background: rgba(0,0,0,.25);
+
+    border-radius: 50%;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.menu-button:hover {
+    border-color: #ff6500;
+
+    transform: rotate(8deg);
+}
+
+
+.menu-button span {
+    width: 17px;
+    height: 1px;
+
+    background: white;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.menu {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255,101,0,.14),
+            transparent 35%
+        ),
+        #070707;
+
+    z-index: 200;
+
+    padding: 35px 5vw;
+
+    transform: translateY(-105%);
+
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.menu.open {
+    transform: translateY(0);
+}
+
+
+.menu-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    letter-spacing: .2em;
+
+    opacity: .65;
+}
+
+
+.menu-close {
+    border: 0;
+
+    background: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    letter-spacing: .15em;
+}
+
+
+.menu-links {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    max-width: 900px;
+
+    width: 100%;
+
+    margin: auto;
+}
+
+
+.menu-links a {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr 30px;
+
+    align-items: center;
+
+    padding: 20px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.1);
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(32px, 6vw, 70px);
+
+    font-weight: 600;
+
+    transition: .35s;
+}
+
+
+.menu-links a span {
+    font-size: 11px;
+
+    opacity: .4;
+}
+
+
+.menu-links a b {
+    color: #ff6500;
+
+    font-size: 22px;
+}
+
+
+.menu-links a:hover,
+.menu-links a.active {
+    color: #ff6500;
+
+    padding-left: 18px;
+}
+
+
+.menu-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    letter-spacing: .18em;
+
+    opacity: .45;
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+.section-tag {
+    color: #ff6500;
+
+    font-size: 10px;
+
+    letter-spacing: .2em;
+
+    font-weight: 600;
+}
+
+
+.outline {
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.7);
+}
+
+
+/* =========================================================
+   PROCESS HERO
+========================================================= */
+
+.process-hero {
+    min-height: 100vh;
+
+    padding:
+        180px 8vw
+        100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+
+.hero-number {
+    position: absolute;
+
+    top: 150px;
+    right: 8vw;
+
+    font-family: "Space Grotesk";
+
+    font-size: 14px;
+
+    color: #ff6500;
+
+    letter-spacing: .15em;
+}
+
+
+.process-hero h1 {
+    max-width: 1000px;
+
+    margin-top: 30px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(
+        55px,
+        10vw,
+        150px
+    );
+
+    line-height: .88;
+
+    letter-spacing: -.06em;
+}
+
+
+.process-hero h1 span:last-child {
+    color: #ff6500;
+}
+
+
+.process-hero p {
+    max-width: 550px;
+
+    margin-top: 45px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.62);
+}
+
+
+.scroll-indicator {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 70px;
+
+    font-size: 9px;
+
+    letter-spacing: .2em;
+
+    opacity: .5;
+}
+
+
+.scroll-indicator span {
+    width: 45px;
+
+    height: 1px;
+
+    background: #ff6500;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.process-intro {
+    padding:
+        150px 8vw
+        100px;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+}
+
+
+.intro-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    margin-top: 35px;
+}
+
+
+.intro-grid h2 {
+    font-family: "Space Grotesk";
+
+    font-size: clamp(
+        50px,
+        7vw,
+        100px
+    );
+
+    line-height: .9;
+
+    letter-spacing: -.05em;
+}
+
+
+.intro-grid h2 span {
+    color: #ff6500;
+}
+
+
+.intro-grid p {
+    max-width: 480px;
+
+    align-self: end;
+
+    color: rgba(255,255,255,.6);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   PROCESS STEPS
+========================================================= */
+
+.process-section {
+    position: relative;
+
+    padding:
+        80px 8vw
+        150px;
+}
+
+
+.process-line {
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+    bottom: 100px;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #ff6500 10%,
+            rgba(255,101,0,.15) 90%,
+            transparent
+        );
+
+    transform: translateX(-50%);
+}
+
+
+.process-step {
+    position: relative;
+
+    min-height: 400px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 160px 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 60px 0;
+}
+
+
+.step-number {
+    position: absolute;
+
+    top: 30px;
+    left: 0;
+
+    color: rgba(255,255,255,.2);
+
+    font-family: "Space Grotesk";
+
+    font-size: 12px;
+
+    letter-spacing: .15em;
+}
+
+
+.step-orbit {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+.orbit-ring {
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid
+        rgba(255,101,0,.5);
+
+    border-radius: 50%;
+
+    animation:
+        orbitRotate 12s linear infinite;
+}
+
+
+.orbit-ring::before {
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #ff6500;
+
+    border-radius: 50%;
+
+    top: -4px;
+    left: 50%;
+
+    box-shadow:
+        0 0 20px #ff6500;
+}
+
+
+.orbit-core {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #ff6500;
+
+    border:
+        1px solid rgba(255,101,0,.4);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,101,0,.16),
+            rgba(0,0,0,.6)
+        );
+
+    box-shadow:
+        0 0 50px rgba(255,101,0,.12);
+
+    font-size: 20px;
+}
+
+
+.step-content {
+    grid-column: 3;
+}
+
+
+.process-step.reverse .step-content {
+    grid-column: 1;
+
+    grid-row: 1;
+}
+
+
+.step-content > span {
+    color: #ff6500;
+
+    font-size: 10px;
+
+    letter-spacing: .2em;
+}
+
+
+.step-content h2 {
+    margin-top: 15px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(
+        42px,
+        5vw,
+        72px
+    );
+
+    line-height: .9;
+
+    letter-spacing: -.05em;
+}
+
+
+.step-content h2 strong {
+    color: #ff6500;
+
+    font-weight: 600;
+}
+
+
+.step-content p {
+    max-width: 440px;
+
+    margin-top: 28px;
+
+    color: rgba(255,255,255,.58);
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services {
+    padding:
+        150px 8vw;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+}
+
+
+.services h2 {
+    max-width: 1000px;
+
+    margin-top: 35px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(
+        55px,
+        8vw,
+        110px
+    );
+
+    line-height: .9;
+
+    letter-spacing: -.06em;
+}
+
+
+.services h2 span {
+    color: #ff6500;
+}
+
+
+.service-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 80px;
+}
+
+
+.service-card {
+    min-height: 260px;
+
+    padding: 28px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.025);
+
+    transition: .4s;
+}
+
+
+.service-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(255,101,0,.5);
+
+    background:
+        rgba(255,101,0,.05);
+}
+
+
+.service-card > span {
+    color: #ff6500;
+
+    font-size: 10px;
+
+    letter-spacing: .15em;
+}
+
+
+.service-card h3 {
+    margin-top: 70px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 24px;
+}
+
+
+.service-card p {
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.5);
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.process-cta {
+    min-height: 75vh;
+
+    padding: 150px 8vw;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+}
+
+
+.cta-star {
+    color: #ff6500;
+
+    font-size: 35px;
+
+    margin-bottom: 30px;
+
+    animation:
+        floatStar 3s ease-in-out infinite;
+}
+
+
+.process-cta h2 {
+    margin-top: 30px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(
+        55px,
+        9vw,
+        130px
+    );
+
+    line-height: .85;
+
+    letter-spacing: -.06em;
+}
+
+
+.process-cta h2 span {
+    display: block;
+
+    color: #ff6500;
+}
+
+
+.process-cta p {
+    margin-top: 35px;
+
+    color: rgba(255,255,255,.55);
+}
+
+
+.cta-button {
+    margin-top: 45px;
+
+    padding: 17px 28px;
+
+    border: 1px solid #ff6500;
+
+    color: white;
+
+    font-size: 10px;
+
+    letter-spacing: .16em;
+
+    transition: .35s;
+}
+
+
+.cta-button span {
+    margin-left: 25px;
+
+    color: #ff6500;
+}
+
+
+.cta-button:hover {
+    background: #ff6500;
+
+    color: #050505;
+
+    box-shadow:
+        0 0 35px rgba(255,101,0,.25);
+}
+
+
+@keyframes floatStar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    position: relative;
+
+    z-index: 10;
+
+    padding: 40px 7vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    border-top: 1px solid var(--line);
+
+    background: #050505;
+
+}
+
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.footer-symbol {
+
+    position: relative;
+
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid rgba(255,101,0,.4);
+
+    border-radius: 50%;
+
+}
+
+
+.footer-symbol span {
+
+    color: var(--orange);
+
+    font-family: var(--display);
+
+}
+
+
+.footer-symbol i {
+
+    position: absolute;
+
+    right: -5px;
+    top: -7px;
+
+    color: var(--orange);
+
+    font-size: 8px;
+
+}
+
+
+.footer-brand strong {
+
+    display: block;
+
+    font-family: var(--display);
+
+    font-size: 13px;
+
+    letter-spacing: .12em;
+
+}
+
+
+.footer-brand small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 6px;
+
+    letter-spacing: .2em;
+
+    color: rgba(255,255,255,.4);
+
+}
+
+
+footer p,
+footer > span {
+
+    color: rgba(255,255,255,.35);
+
+    font-size: 8px;
+
+    letter-spacing: .16em;
+
+}
+
+
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding: 20px 6vw;
+    }
+
+
+    .desktop-nav {
+        display: none;
+    }
+
+
+    .menu-button {
+        display: flex;
+    }
+
+
+    .process-hero {
+        padding:
+            150px 7vw
+            80px;
+    }
+
+
+    .hero-number {
+        top: 120px;
+
+        right: 7vw;
+    }
+
+
+    .process-hero h1 {
+        font-size:
+            clamp(55px, 15vw, 100px);
+    }
+
+
+    .process-intro {
+        padding:
+            100px 7vw;
+    }
+
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+
+    .process-section {
+        padding:
+            50px 7vw
+            100px;
+    }
+
+
+    .process-line {
+        left: 35px;
+    }
+
+
+    .process-step,
+    .process-step.reverse {
+        display: grid;
+
+        grid-template-columns:
+            70px 1fr;
+
+        gap: 25px;
+
+        min-height: 350px;
+
+        padding: 50px 0;
+    }
+
+
+    .step-number {
+        position: static;
+
+        grid-column: 1;
+
+        grid-row: 1;
+
+        align-self: start;
+    }
+
+
+    .step-orbit {
+        grid-column: 2;
+
+        grid-row: 1;
+
+        width: 100px;
+        height: 100px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .orbit-core {
+        width: 45px;
+        height: 45px;
+
+        font-size: 15px;
+    }
+
+
+    .step-content,
+    .process-step.reverse .step-content {
+        grid-column: 2;
+
+        grid-row: 2;
+    }
+
+
+    .step-content h2 {
+        font-size:
+            clamp(38px, 10vw, 60px);
+    }
+
+
+    .services {
+        padding:
+            100px 7vw;
+    }
+
+
+    .service-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+        margin-top: 50px;
+    }
+
+
+    .service-card {
+        min-height: 230px;
+
+        padding: 22px;
+    }
+
+
+    .service-card h3 {
+        margin-top: 45px;
+    }
+
+
+    .process-cta {
+        min-height: 65vh;
+
+        padding:
+            100px 7vw;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .brand-text small {
+        font-size: 6px;
+    }
+
+
+    .brand-text strong {
+        font-size: 14px;
+    }
+
+
+    .brand-symbol {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .brand-ring {
+        width: 42px;
+    }
+
+
+    .process-hero {
+        min-height: 90vh;
+    }
+
+
+    .process-hero p {
+        font-size: 14px;
+    }
+
+
+    .process-line {
+        left: 29px;
+    }
+
+
+    .process-step,
+    .process-step.reverse {
+        grid-template-columns:
+            45px 1fr;
+
+        gap: 15px;
+    }
+
+
+    .step-orbit {
+        width: 75px;
+        height: 75px;
+    }
+
+
+    .orbit-core {
+        width: 36px;
+        height: 36px;
+
+        font-size: 12px;
+    }
+
+
+    .step-content h2 {
+        font-size: 38px;
+    }
+
+
+    .step-content p {
+        font-size: 13px;
+    }
+
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .service-card {
+        min-height: auto;
+
+        padding: 25px;
+    }
+
+
+    .service-card h3 {
+        margin-top: 35px;
+    }
+
+
+    .menu {
+        padding:
+            25px 6vw;
+    }
+
+
+    .menu-links a {
+        grid-template-columns:
+            40px 1fr 25px;
+
+        font-size:
+            clamp(30px, 11vw, 55px);
+
+        padding: 16px 0;
+    }
+
+
+    .menu-bottom {
+        font-size: 7px;
+    }
+
+}

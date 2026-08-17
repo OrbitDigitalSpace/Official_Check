@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Orbit Digital Space — Our process for building websites, apps and digital experiences."
+    >
+
+    <title>Process — Orbit Digital Space</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/process.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SPACE BACKGROUND
+====================================================== -->
+
+<div class="space-background">
+
+    <video
+        id="spaceVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+    >
+
+        <source
+            src="assets/space.mp4"
+            type="video/mp4"
+        >
+
+    </video>
+
+</div>
+
+
+<div class="space-overlay"></div>
+
+<canvas id="spaceCanvas"></canvas>
+
+<div class="cursor-glow"></div>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="header">
+
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <div class="brand-symbol">
+
+            <span class="brand-ring"></span>
+
+            <span class="brand-letter">
+                O
+            </span>
+
+            <span class="brand-star">
+                ✦
+            </span>
+
+        </div>
+
+
+        <div class="brand-text">
+
+            <strong>
+                ORBIT
+            </strong>
+
+            <small>
+                DIGITAL SPACE
+            </small>
+
+        </div>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav class="desktop-nav">
+
+        <a href="index.html">
+            HOME
+        </a>
+
+
+        
+        <a href="about.html">
+            ABOUT
+        </a>
+
+
+
+        <a href="work.html">
+            WORK
+        </a>
+
+        <a
+            href="process.html"
+            class="active"
+        >
+            PROCESS
+        </a>
+
+        <a href="pricing.html">
+            PRICING
+        </a>
+
+        <a href="contact.html">
+            CONTACT
+        </a>
+
+    </nav>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     MOBILE MENU
+====================================================== -->
+
+<div
+    class="menu"
+    id="menu"
+>
+
+
+    <div class="menu-top">
+
+        <span>
+            ORBIT / NAVIGATION
+        </span>
+
+        <button
+            id="menuClose"
+            class="menu-close"
+        >
+            CLOSE ×
+        </button>
+
+    </div>
+
+
+    <div class="menu-links">
+
+        <a href="index.html">
+
+            <span>01</span>
+
+            HOME
+
+            <b>↗</b>
+
+        </a>
+
+
+        <a href="work.html">
+
+            <span>02</span>
+
+            WORK
+
+            <b>↗</b>
+
+        </a>
+
+
+        <a
+            href="process.html"
+            class="active"
+        >
+
+            <span>03</span>
+
+            PROCESS
+
+            <b>↗</b>
+
+        </a>
+
+
+        <a href="pricing.html">
+
+            <span>04</span>
+
+            PRICING
+
+            <b>↗</b>
+
+        </a>
+
+
+        <a href="contact.html">
+
+            <span>05</span>
+
+            CONTACT
+
+            <b>↗</b>
+
+        </a>
+
+    </div>
+
+
+    <div class="menu-bottom">
+
+        <span>
+            BUILD BEYOND LIMITS.
+        </span>
+
+        <span>
+            INDIA ✦ 2026
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     PROCESS HERO
+====================================================== -->
+
+<section class="process-hero">
+
+
+    <div class="hero-number">
+        03
+    </div>
+
+
+    <div class="section-tag">
+        03 / THE PROCESS
+    </div>
+
+
+    <h1>
+
+        FROM
+
+        <span class="outline">
+            IDEA
+        </span>
+
+        TO
+
+        <span>
+            ORBIT.
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        Every digital experience starts with an idea.
+        We turn that idea into something people can
+        actually explore, use and remember.
+
+    </p>
+
+
+    <div class="scroll-indicator">
+
+        <span></span>
+
+        EXPLORE THE PROCESS
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PROCESS INTRO
+====================================================== -->
+
+<section class="process-intro">
+
+
+    <div class="section-tag">
+        HOW WE BUILD
+    </div>
+
+
+    <div class="intro-grid">
+
+        <h2>
+
+            SIMPLE
+            <span>
+                PROCESS.
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            No complicated process.
+            No unnecessary steps.
+
+            Just a clear journey from the first
+            conversation to the final launch.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROCESS STEPS
+====================================================== -->
+
+<section class="process-section">
+
+
+    <div class="process-line"></div>
+
+
+    <!-- STEP 01 -->
+
+    <article class="process-step">
+
+
+        <div class="step-number">
+            01
+        </div>
+
+
+        <div class="step-orbit">
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-core">
+                ✦
+            </div>
+
+        </div>
+
+
+        <div class="step-content">
+
+            <span>
+                DISCOVER
+            </span>
+
+            <h2>
+                THE
+                <strong>IDEA.</strong>
+            </h2>
+
+            <p>
+
+                We start by understanding what you
+                want to build, who it is for and what
+                you want people to feel when they
+                experience it.
+
+            </p>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- STEP 02 -->
+
+    <article class="process-step reverse">
+
+
+        <div class="step-number">
+            02
+        </div>
+
+
+        <div class="step-orbit">
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-core">
+                ✦
+            </div>
+
+        </div>
+
+
+        <div class="step-content">
+
+            <span>
+                DESIGN
+            </span>
+
+            <h2>
+                SHAPE THE
+                <strong>WORLD.</strong>
+            </h2>
+
+            <p>
+
+                Layout, typography, colours,
+                interactions and visual direction
+                come together to create the identity
+                of your digital experience.
+
+            </p>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- STEP 03 -->
+
+    <article class="process-step">
+
+
+        <div class="step-number">
+            03
+        </div>
+
+
+        <div class="step-orbit">
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-core">
+                ✦
+            </div>
+
+        </div>
+
+
+        <div class="step-content">
+
+            <span>
+                BUILD
+            </span>
+
+            <h2>
+                MAKE IT
+                <strong>REAL.</strong>
+            </h2>
+
+            <p>
+
+                The design becomes a working product
+                using modern web technologies,
+                responsive layouts and carefully
+                crafted interactions.
+
+            </p>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- STEP 04 -->
+
+    <article class="process-step reverse">
+
+
+        <div class="step-number">
+            04
+        </div>
+
+
+        <div class="step-orbit">
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-core">
+                ✦
+            </div>
+
+        </div>
+
+
+        <div class="step-content">
+
+            <span>
+                REFINE
+            </span>
+
+            <h2>
+                TEST.
+                <strong>PERFECT.</strong>
+            </h2>
+
+            <p>
+
+                We test responsiveness, navigation,
+                interactions and performance across
+                different screen sizes before launch.
+
+            </p>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- STEP 05 -->
+
+    <article class="process-step final-step">
+
+
+        <div class="step-number">
+            05
+        </div>
+
+
+        <div class="step-orbit final-orbit">
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-core">
+                ✦
+            </div>
+
+        </div>
+
+
+        <div class="step-content">
+
+            <span>
+                LAUNCH
+            </span>
+
+            <h2>
+                ENTER THE
+                <strong>ORBIT.</strong>
+            </h2>
+
+            <p>
+
+                Your website or digital product
+                is ready to go live and reach the
+                people it was created for.
+
+            </p>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+
+<!-- =====================================================
+     DIGITAL SERVICES
+====================================================== -->
+
+<section class="services">
+
+
+    <div class="section-tag">
+        BEYOND WEBSITES
+    </div>
+
+
+    <h2>
+
+        ONE
+
+        <span>
+            IDEA.
+        </span>
+
+        MANY
+
+        <span>
+            WORLDS.
+        </span>
+
+    </h2>
+
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                WEBSITES
+            </h3>
+
+            <p>
+                Business websites, portfolios,
+                communities and landing pages.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                WEB APPS
+            </h3>
+
+            <p>
+                Interactive digital products
+                designed around real ideas.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                MOBILE APPS
+            </h3>
+
+            <p>
+                Digital experiences designed
+                beyond the browser.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <span>
+                04
+            </span>
+
+            <h3>
+                GAMES
+            </h3>
+
+            <p>
+                Experimental interactive worlds
+                and game experiences.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL CTA
+====================================================== -->
+
+<section class="process-cta">
+
+
+    <div class="cta-star">
+        ✦
+    </div>
+
+
+    <div class="section-tag">
+        READY?
+    </div>
+
+
+    <h2>
+
+        LET'S BUILD
+
+        <span>
+            SOMETHING.
+        </span>
+
+    </h2>
+
+
+    <p>
+        Your idea could be the next thing we put into orbit.
+    </p>
+
+
+    <a
+        href="contact.html"
+        class="cta-button"
+    >
+
+        START A PROJECT
+
+        <span>↗</span>
+
+    </a>
+
+</section>
+
+
+</main>
+
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-brand">
+
+        <div class="footer-symbol">
+
+            <span>
+                O
+            </span>
+
+            <i>
+                ✦
+            </i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                ORBIT
+            </strong>
+
+            <small>
+                DIGITAL SPACE
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        BUILD BEYOND LIMITS.
+    </p>
+
+
+    <span>
+        © 2026 ORBIT DIGITAL SPACE
+    </span>
+
+</footer>
+
+
+
+<script src="js/process.js"></script>
+
+</body>
+
+</html>
